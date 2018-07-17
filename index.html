@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="demo-2 no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>kangaroo的简历</title>
+    <!-- 动态标题 -->
+    <script>document.addEventListener('visibilitychange', function () { if (document.visibilityState == 'hidden') { normal_title = document.title; document.title = '敲出美好的生活'; } else { document.title = normal_title; } });</script>
+    <!-- 引入fullpage的文件 -->
+    <link rel="stylesheet" href="./css/jquery.fullPage.css">
+    <script src="./js/jquery-1.8.3.min.js"></script>
+    <script src="./js/jquery.fullPage.js"></script>
+    <!-- 引入字体图标 -->
+    <!-- <link rel="stylesheet" href="./css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <!-- 引入less -->
+    <link rel="stylesheet/less" type="text/css" href="./css/index.less" />
+    <script src="./js/less.js" type="text/javascript"></script>
+
+    <!-- 第二屏 -->
+    <script src="./js/circle.js"></script>
+    <link rel="stylesheet" href="./css/circle.css">
+    <script src="./iconfont/iconfont.js"></script>
+
+    <!-- 第四屏的作品插件 -->
+    <link rel="stylesheet" type="text/css" href="./css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="./css/component.css" />
+    <script src="./js/snap.svg-min.js"></script>
+
+    <!-- 第五屏 -->
+    <!-- 打字机效果 -->
+    <link rel="stylesheet" type="text/css" href="./css/typeit.css">
+    <script src="./js/typeit.js"></script>
+    <!-- 图标贴纸 -->
+    <script type="text/javascript" src="js/sticker.min.js"></script>
+</head>
+
+<body>
+    <ul id="menu">
+        <li data-menuanchor="page1">
+            <a href="#page1" class='fa fa-user-o'></a>
+        </li>
+        <li data-menuanchor="page2">
+            <a href="#page2" class='fa fa-code'></a>
+        </li>
+        <li data-menuanchor="page3">
+            <a href="#page3" class='fa fa-hourglass-o'></a>
+        </li>
+        <li data-menuanchor="page4">
+            <a href="#page4" class='fa fa-bookmark-o'></a>
+        </li>
+        <li data-menuanchor="page5">
+            <a href="#page5" class='fa fa-comment-o'></a>
+        </li>
+    </ul>
+    <div id="dowebok">
+        <!-- 第一屏:关于我 -->
+        <div class="section section1" data-anchor="page1">
+            <div class="inner">
+                <div class="up">
+                    <img src="./images/me.png" alt="">
+                </div>
+                <div class="middle">
+                    <p>我叫
+                        <span style="color: orange">黄</span>
+                        <span style="color: yellow">传</span>
+                        <span style="color: yellowgreen">聪</span>
+                        , 我为自己带盐</p>
+                    <ul>
+                        <li>
+                            <i class="fa fa-birthday-cake"></i>
+                            <span>年龄/24岁</span>
+                        </li>
+                        <li>
+                            <i class="fa fa-graduation-cap"></i>
+                            <span>学历/专科</span>
+                        </li>
+                        <li>
+                            <i class="fa fa-map-marker"></i>
+                            <span>坐标/深圳</span>
+                        </li>
+                        <li>
+                            <i class="fa fa-desktop"></i>
+                            <span>状态/求职</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom">
+                    <p>三年互联网经验,两年全职前端开发经验</p>
+                    <p>熟悉PC端/移动端/小程序和公众号开发</p>
+                </div>
+            </div>
+        </div>
+        <!-- 第二屏:技术栈 -->
+        <div class="section section2" data-anchor="page2">
+                <em>技能栈</em>
+            <div class="inner">
+                <!-- 圆圈旋转 -->
+                <div class="holderCircle">
+
+                    <div class="dotCircle">
+                        <span class="itemDot active itemDot1" data-tab="1">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-HTML"></use>
+                                <span class="forActive"></span>
+                        </span>
+                        <span class="itemDot itemDot2" data-tab="2">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xiaochengxu"></use>
+                            </svg>
+                            <span class="forActive"></span>
+                        </span>
+                        <span class="itemDot itemDot3" data-tab="3">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-fe-sass"></use>
+                            </svg>
+                            <span class="forActive"></span>
+                        </span>
+                        <span class="itemDot itemDot4" data-tab="4">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-webpack"></use>
+                            </svg>
+                            <span class="forActive"></span>
+                        </span>
+                        <span class="itemDot itemDot5" data-tab="5">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-CSS"></use>
+                            </svg>
+                            <span class="forActive"></span>
+                        </span>
+                        <span class="itemDot itemDot6" data-tab="6">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-JS"></use>
+                            </svg>
+                            <span class="forActive"></span>
+                        </span>
+                        <span class="itemDot itemDot7" data-tab="7">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-jquery"></use>
+                            </svg>
+                            <span class="forActive"></span>
+                        </span>
+                        <span class="itemDot itemDot8" data-tab="8">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-fe-less"></use>
+                            </svg>
+                            <span class="forActive"></span>
+                        </span>
+                        <span class="itemDot itemDot9" data-tab="9">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-PHP"></use>
+                            </svg>
+                            <span class="forActive"></span>
+                        </span>
+                        <span class="itemDot itemDot10" data-tab="10">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-vuejs"></use>
+                            </svg>
+                            <span class="forActive"></span>
+                        </span>
+                    </div>
+
+                    <div class="contentCircle">
+
+                        <div class="CirItem active CirItem1">
+                            HTML/H5 95%
+                        </div>
+                        <div class="CirItem CirItem2">
+                            微信小程序 80%
+                        </div>
+                        <div class="CirItem CirItem3">
+                            Sass 92%
+                        </div>
+                        <div class="CirItem CirItem4">
+                            webpack 80%
+                        </div>
+                        <div class="CirItem CirItem5">
+                            CSS/CSS3 90%
+                        </div>
+                        <div class="CirItem CirItem6">
+                            JavaScript 80%
+                        </div>
+                        <div class="CirItem CirItem7">
+                            jQuery 90%
+                        </div>
+                        <div class="CirItem CirItem8">
+                            Less 95%
+                        </div>
+                        <div class="CirItem CirItem9">
+                            PHP 80%
+                        </div>
+                        <div class="CirItem CirItem10">
+                            Vuejs 70%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <p>熟练使用HTML和CSS布局</p>
+                    <p>熟练使用js和Jquery</p>
+                    <p>熟练Ajax,json交互</p>
+                    <p>熟练使用微信小程序</p>
+                    <p>熟悉vue框架</p>
+                    <div class="title">持续更新...</div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 第三屏:经历 -->
+        <div class="section section3" data-anchor="page3">
+            <em>经历</em>
+        </div>
+        <!-- 第四屏:作品集 -->
+        <div class="section section4" data-anchor="page4">
+            <em>作品集</em>
+            <div class="container">
+                <section id="grid" class="grid clearfix">
+                    <!-- 项目1 -->
+                    <a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                        <figure>
+                            <img src="./images/4-1.png" />
+                            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
+                                <path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"
+                                />
+                            </svg>
+                            <figcaption>
+                                <h2>启思维教育</h2>
+                                <p>PC端页面</p>
+                                <button>观看</button>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    <!-- 项目二 -->
+                    <a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                        <figure>
+                            <img src="./images/4-2.png" />
+                            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
+                                <path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"
+                                />
+                            </svg>
+                            <figcaption>
+                                <h2>伴里鲜生</h2>
+                                <p>微信小程序</p>
+                                <button>观看</button>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    <!-- 项目三 -->
+                    <a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                        <figure>
+                            <img src="./images/4-3.png" />
+                            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
+                                <path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"
+                                />
+                            </svg>
+                            <figcaption>
+                                <h2>e洗·新净界</h2>
+                                <p>微信公众号</p>
+                                <button>观看</button>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </section>
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- 第五屏:联系我 -->
+        <div class="section section5" data-anchor="page5">
+                <em>联系我</em>
+            <span class="type-it"></span>
+            <div class="find-me">
+                <!-- csdn博客 -->
+                <a href="https://blog.csdn.net/qq_40259641" target="_blank">
+                    <div class="sticker example-1"></div>
+                </a>
+                <!-- 微博 -->
+                <a href="https://weibo.com/5428905387/" target="_blank">
+                    <div class="sticker example-2"></div>
+                </a>
+                <!-- github -->
+                <a href="https://github.com/kangaroo711" target="_blank">
+                    <div class="sticker example-3"></div>
+                </a>
+                <!-- 谷歌邮箱 -->
+                <a href="mailto:tr.hcco@gmail.com">
+                    <div class="sticker example-4"></div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+    $(function () {
+        //这个标记是打印机用的
+        var flag = true;
+        $('#dowebok').fullpage({
+            //切换页面滚动速度
+            scrollingSpeed: 300,
+            //左右滑块的位置
+            slidesNavigation: true,
+            //左右滑块是否循环滑动
+            loopHorizontal: true,
+            sectionsColor: ['#2b7e93', '#018f7e', '#475c85', '#9b5547'],
+            verticalCentered: true,
+            afterLoad: (anchorLink, index) => {
+                //第二屏
+                if (index == 2) {
+
+                }
+                //第四屏-----------------------------------
+                if (index == 4) {
+                    function init() {
+                        var speed = 330,
+                            easing = mina.backout;
+
+                        [].slice.call(document.querySelectorAll('#grid > a')).forEach(function (el) {
+                            var s = Snap(el.querySelector('svg')), path = s.select('path'),
+                                pathConfig = {
+                                    from: path.attr('d'),
+                                    to: el.getAttribute('data-path-hover')
+                                };
+
+                            el.addEventListener('mouseenter', function () {
+                                path.animate({ 'path': pathConfig.to }, speed, easing);
+                            });
+
+                            el.addEventListener('mouseleave', function () {
+                                path.animate({ 'path': pathConfig.from }, speed, easing);
+                            });
+                        });
+                    }
+                    init();
+                }
+                // 第五屏---------------------------------
+                if (index == 5) {
+                    //打字机,只有第一次进来有效,不然有bug
+                    if (flag == true) {
+                        flag = false;
+                        $('.type-it').typeIt({
+                            whatToType: ['别和我谈TM的什么爱情!我现在只想搞钱!!', '不好意思打错了....', '梦想or未来,用我的指尖敲下!!!'],
+                            typeSpeed: 200,
+                            lifeLike: true,
+                            showCursor: true,
+                            breakLines: false
+                        },function(){
+                            console.log('你好呀!--来自一只前端攻城狮的问候.')
+                        });
+
+                    }
+                }
+            },
+        });
+
+        // 贴纸
+        Sticker.init('.sticker');
+
+    });
+</script>
