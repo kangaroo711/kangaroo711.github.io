@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="demo-2 no-js">
+<html lang="zh" class="demo-2 no-js">
 
 <head>
     <meta charset="UTF-8">
@@ -13,28 +13,25 @@
     <script src="./js/jquery-1.8.3.min.js"></script>
     <script src="./js/jquery.fullPage.js"></script>
     <!-- 引入字体图标 -->
-    <!-- <link rel="stylesheet" href="./css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 引入less -->
     <link rel="stylesheet/less" type="text/css" href="./css/index.less" />
     <script src="./js/less.js" type="text/javascript"></script>
-
+    <!-- 第一屏 -->
+    <link rel="stylesheet" href="./css/button.css">
     <!-- 第二屏 -->
-    <script src="./js/circle.js"></script>
     <link rel="stylesheet" href="./css/circle.css">
-    <script src="./iconfont/iconfont.js"></script>
+    <!-- 第三屏 -->
+    <link rel="stylesheet" href="./css/experience.css">
+    <script src="./js/experience.js"></script>
 
-    <!-- 第四屏的作品插件 -->
+    <!-- 第四屏 -->
     <link rel="stylesheet" type="text/css" href="./css/demo.css" />
     <link rel="stylesheet" type="text/css" href="./css/component.css" />
-    <script src="./js/snap.svg-min.js"></script>
 
     <!-- 第五屏 -->
     <!-- 打字机效果 -->
     <link rel="stylesheet" type="text/css" href="./css/typeit.css">
-    <script src="./js/typeit.js"></script>
-    <!-- 图标贴纸 -->
-    <script type="text/javascript" src="js/sticker.min.js"></script>
 </head>
 
 <body>
@@ -58,9 +55,23 @@
     <div id="dowebok">
         <!-- 第一屏:关于我 -->
         <div class="section section1" data-anchor="page1">
+            <!-- <button id="change">中英文切换</button> -->
+            <!--  -->
+            <!-- <div class="grid__item theme-1">
+                <button class="action">
+                    <svg class="icon icon--rewind">
+                        <use xlink:href="#icon-rewind"></use>
+                    </svg>
+                </button>
+                <button class="particles-button">点我</button>
+            </div> -->
+            <!--  -->
             <div class="inner">
-                <div class="up">
-                    <img src="./images/me.png" alt="">
+                <div class="up-box">
+                    <div class="up">
+                        <img src="./images/me.png" alt="头像更新中">
+                    </div>
+                    <!-- <div class="popUp"></div> -->
                 </div>
                 <div class="middle">
                     <p>我叫
@@ -88,14 +99,14 @@
                     </ul>
                 </div>
                 <div class="bottom">
-                    <p>三年互联网经验,两年全职前端开发经验</p>
-                    <p>熟悉PC端/移动端/小程序和公众号开发</p>
+                    <p>三年互联网经验, 两年全职前端开发经验</p>
+                    <p>熟悉 PC端 / 移动端 / 小程序 和 Vue.js 开发</p>
                 </div>
             </div>
         </div>
         <!-- 第二屏:技术栈 -->
         <div class="section section2" data-anchor="page2">
-                <em>技能栈</em>
+            <em>技能栈</em>
             <div class="inner">
                 <!-- 圆圈旋转 -->
                 <div class="holderCircle">
@@ -165,13 +176,13 @@
                     <div class="contentCircle">
 
                         <div class="CirItem active CirItem1">
-                            HTML/H5 95%
+                            HTML/H5 90%
                         </div>
                         <div class="CirItem CirItem2">
                             微信小程序 80%
                         </div>
                         <div class="CirItem CirItem3">
-                            Sass 92%
+                            Sass 90%
                         </div>
                         <div class="CirItem CirItem4">
                             webpack 80%
@@ -180,16 +191,16 @@
                             CSS/CSS3 90%
                         </div>
                         <div class="CirItem CirItem6">
-                            JavaScript 80%
+                            JavaScript 75%
                         </div>
                         <div class="CirItem CirItem7">
-                            jQuery 90%
+                            jQuery 85%
                         </div>
                         <div class="CirItem CirItem8">
-                            Less 95%
+                            Less 90%
                         </div>
                         <div class="CirItem CirItem9">
-                            PHP 80%
+                            PHP 60%
                         </div>
                         <div class="CirItem CirItem10">
                             Vuejs 70%
@@ -198,12 +209,14 @@
                 </div>
 
                 <div class="content">
-                    <p>熟练使用HTML和CSS布局</p>
-                    <p>熟练使用js和Jquery</p>
-                    <p>熟练Ajax,json交互</p>
-                    <p>熟练使用微信小程序</p>
-                    <p>熟悉vue框架</p>
-                    <div class="title">持续更新...</div>
+                    <p>熟练使用HTML/CSS/H5C3网页开发</p>
+                    <p>熟练使用JavaScript完成页面交互和功能实现</p>
+                    <p>熟练使用Ajax/json进行前后端数据交互</p>
+                    <p>熟悉MVC/MVVM模式,应用Vue.js前端框架</p>
+                    <p>熟悉SVN/Git版本控制工具及一些框架插件的使用</p>
+                    <p>了解PHP和nodejs基础知识</p>
+                    <div class="title" style="font-size: 14px">持续更新...</div>
+
                 </div>
             </div>
 
@@ -211,6 +224,115 @@
         <!-- 第三屏:经历 -->
         <div class="section section3" data-anchor="page3">
             <em>经历</em>
+            <div class="item_box box10">
+                <div class="item_box_wp">
+                    <div class="voice_2">
+                        <ul>
+                            <li class="li1" id="li1">
+                                <div class="fold" style="display:none;">
+                                    <span class="img"></span>
+                                </div>
+                                <div class="unfold" style="display:block">
+                                    <dl>
+                                        <dt>
+                                            <!-- <img src="images/img10.png" /> -->
+                                        </dt>
+                                        <dd>
+                                            <b>微酷科技公司
+                                            </b>
+                                        </dd>
+                                        <p>2017.4 - 至今</p>
+                                        <br>
+                                        <p>◎Vue</p>
+                                        <p>1. 使用Bootstrap 编写页面，通过优雅降级，处理各种浏览器兼容性问题;
+                                        </p>
+                                        <p>
+                                            2. 使用Vue +Vue.router 构建单页面应用;
+                                        </p>
+                                        <p>
+                                            3. 采用Vue-cli快速搭建环境;
+                                        </p>
+                                        <p>
+                                            4. 采用Vuex处理各组件间的通讯，Vue-resource处理请求;
+                                        </p>
+                                        <p>
+                                            5. 使用Less预处理语言, Mint-ui / Element组件库提高团队开发效率.
+                                        </p>
+                                    </dl>
+                                </div>
+                            </li>
+                            <li class="li2">
+                                <div class="fold">
+                                    <!-- <span class="img"></span> -->
+                                    <span class="txt">微酷科技公司</span>
+                                </div>
+                                <div class="unfold">
+                                    <dl>
+                                        <dt>
+                                            <!-- <img src="images/img42.png" /> -->
+                                        </dt>
+                                        <dd>
+                                            <b>微酷科技公司
+                                            </b>
+                                        </dd>
+                                        <p>2017.4 - 至今</p>
+                                        <br>
+                                        <p>◎微信小程序</p>
+                                        <p>1. 页面布局,将设计图转化为静态页面;
+                                        </p>
+                                        <p>
+                                            2. 使用Less预处理语言,让代码结构更加清晰,易于维护;
+                                        </p>
+                                        <p>
+                                            3. 使用Swiper实现首页轮播效果;使用Font-Awesome字体图标库;
+                                        </p>
+                                        <p>
+                                            4. 与后台开发工程师协作，完成前端数据绑定，操作交互;
+                                        </p>
+                                        <p>
+                                            5. 商品加入购物车,完成生成订单调用微信支付流程.
+                                        </p>
+                                    </dl>
+                                </div>
+                            </li>
+                            <li class="li3">
+                                <div class="fold">
+                                    <!-- <span class="img"></span> -->
+                                    <span class="txt">天德教育集团</span>
+                                </div>
+                                <div class="unfold">
+                                    <dl>
+                                        <dt>
+                                            <!-- <img src="images/img50.png" /> -->
+                                        </dt>
+                                        <dd>
+                                            <b>天德教育集团
+                                            </b>
+                                        </dd>
+                                        <p>2016.7 - 2017.3</p>
+                                        <br>
+                                        <p>◎PC端页面</p>
+                                        <p>1. 首页JavaScript轮播图,页面使用FullPage.js,同时实现下拉动画效果;
+                                        </p>
+                                        <p>
+                                            2. 使用ajax调用后台提供的接口获取文章数据.使用artTemplate动态渲染页面内容;
+                                        </p>
+                                        <p>
+                                            3. 使用html5shiv.js兼容H5新标签;
+                                        </p>
+                                        <p>
+                                            4. 使用Sass扩展语言方便后期维护;
+                                        </p>
+                                        <p>
+                                            5. 后期不断迭代优化和维护代码.
+                                        </p>
+                                    </dl>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- 第四屏:作品集 -->
         <div class="section section4" data-anchor="page4">
@@ -268,7 +390,7 @@
         </div>
         <!-- 第五屏:联系我 -->
         <div class="section section5" data-anchor="page5">
-                <em>联系我</em>
+            <em>联系我</em>
             <span class="type-it"></span>
             <div class="find-me">
                 <!-- csdn博客 -->
@@ -289,76 +411,27 @@
                 </a>
             </div>
         </div>
-
     </div>
 </body>
 
 </html>
+<!-- 全屏 -->
+<script src="./js/index.js"></script>
+<!-- 第一屏js -->
+<script src="./js/circle.js"></script>
+<script src="./iconfont/iconfont.js"></script>
+<script src="./js/button-anime.min.js"></script>
+<script src="./js/button-particles.js"></script>
+<script src="./js/button-demo.js"></script>
 
-<script>
-    $(function () {
-        //这个标记是打印机用的
-        var flag = true;
-        $('#dowebok').fullpage({
-            //切换页面滚动速度
-            scrollingSpeed: 300,
-            //左右滑块的位置
-            slidesNavigation: true,
-            //左右滑块是否循环滑动
-            loopHorizontal: true,
-            sectionsColor: ['#2b7e93', '#018f7e', '#475c85', '#9b5547'],
-            verticalCentered: true,
-            afterLoad: (anchorLink, index) => {
-                //第二屏
-                if (index == 2) {
+<!-- 第二屏js -->
+<script src="./js/language.js"></script>
 
-                }
-                //第四屏-----------------------------------
-                if (index == 4) {
-                    function init() {
-                        var speed = 330,
-                            easing = mina.backout;
+<!-- 第三屏js -->
 
-                        [].slice.call(document.querySelectorAll('#grid > a')).forEach(function (el) {
-                            var s = Snap(el.querySelector('svg')), path = s.select('path'),
-                                pathConfig = {
-                                    from: path.attr('d'),
-                                    to: el.getAttribute('data-path-hover')
-                                };
+<!-- 第四屏js -->
+<script src="./js/snap.svg-min.js"></script>
 
-                            el.addEventListener('mouseenter', function () {
-                                path.animate({ 'path': pathConfig.to }, speed, easing);
-                            });
-
-                            el.addEventListener('mouseleave', function () {
-                                path.animate({ 'path': pathConfig.from }, speed, easing);
-                            });
-                        });
-                    }
-                    init();
-                }
-                // 第五屏---------------------------------
-                if (index == 5) {
-                    //打字机,只有第一次进来有效,不然有bug
-                    if (flag == true) {
-                        flag = false;
-                        $('.type-it').typeIt({
-                            whatToType: ['别和我谈TM的什么爱情!我现在只想搞钱!!', '不好意思打错了....', '梦想or未来,用我的指尖敲下!!!'],
-                            typeSpeed: 200,
-                            lifeLike: true,
-                            showCursor: true,
-                            breakLines: false
-                        },function(){
-                            console.log('你好呀!--来自一只前端攻城狮的问候.')
-                        });
-
-                    }
-                }
-            },
-        });
-
-        // 贴纸
-        Sticker.init('.sticker');
-
-    });
-</script>
+<!-- 第五屏js -->
+<script src="./js/typeit.js"></script>
+<script type="text/javascript" src="js/sticker.min.js"></script>

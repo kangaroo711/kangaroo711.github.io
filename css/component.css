@@ -139,7 +139,10 @@
 	left: 0;
 	padding: 15px;
 	width: 100%;
-	background: #fff;
+	background:linear-gradient(120deg, white 80%, #ace0f9 20%);
+	/* border-width: 3px;
+	border-top-style: solid;
+	border-top-color: #333; */
 	color: #333;
 	font-weight: 300;
 	-webkit-transform: translateY(100%);
