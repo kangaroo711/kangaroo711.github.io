@@ -1,0 +1,318 @@
+.kraken-detail-page {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  overflow-x: hidden;
+  padding: 0 26px calc(170px + env(safe-area-inset-bottom));
+  background: #f6f5f9;
+  color: #101018;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+}
+
+.kraken-detail-header {
+  position: relative;
+  height: 78px;
+}
+
+.kraken-detail-header .kraken-back {
+  position: absolute;
+  left: 4px;
+  top: 31px;
+  width: 17px;
+  height: 17px;
+  border-left: 2px solid #5d5e73;
+  border-bottom: 2px solid #5d5e73;
+  transform: rotate(45deg);
+}
+
+.kraken-share-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.kraken-detail-hero {
+  padding-top: 21px;
+}
+
+.kraken-detail-token {
+  display: block;
+  width: 47px;
+  height: 47px;
+  margin-bottom: 31px;
+  object-fit: contain;
+}
+
+.kraken-detail-hero h1,
+.kraken-detail-hero strong {
+  display: block;
+  margin: 0;
+  color: #101018;
+  font-size: 30px;
+  /* font-weight: 800; */
+  line-height: 1.25;
+}
+
+.kraken-detail-fields {
+  display: grid;
+  gap: 16px;
+  margin-top: 64px;
+}
+
+.kraken-detail-row {
+  display: grid;
+  grid-template-columns: 124px minmax(0, 1fr);
+  column-gap: 8px;
+  align-items: center;
+  min-height: 30px;
+  
+}
+
+.kraken-detail-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #727383;
+  font-size: 18px;
+  /* font-weight: 500; */
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.kraken-detail-value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 0;
+  color: #101018;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.kraken-detail-value > span:not(.kraken-network) {
+  margin-top: 5px;
+  color: #727383;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.kraken-detail-value > strong {
+  color: #101018;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.kraken-detail-id {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.kraken-inline-icon-button,
+.kraken-deposit-address-button {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  color: inherit;
+  font: inherit;
+  line-height: 1;
+}
+
+.kraken-deposit-address-button {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  font-weight: inherit;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kraken-success {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: #d8f1e6;
+  color: #20895a;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.kraken-network {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #101018;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.kraken-tron-icon {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+}
+
+.kraken-copy-icon,
+.kraken-external-icon {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  display: block;
+  object-fit: contain;
+}
+
+.kraken-detail-footer {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  width: min(430px, 100%);
+  padding: 0 26px calc(22px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, #f6f5f9 86%, rgba(246, 245, 249, 0));
+  transform: translateX(-50%);
+}
+
+.kraken-detail-footer button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  height: 52px;
+  border-radius: 29px;
+  background: #e7e8ed;
+  color: #101018;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.kraken-detail-footer p {
+  margin: 34px 20px 0;
+  color: #9b9baa;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.deposit-dialog-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(16, 16, 24, 0.22);
+}
+
+.deposit-dialog {
+  width: min(430px, 100%);
+  padding: 20px 20px calc(22px + env(safe-area-inset-bottom));
+  border-radius: 18px 18px 0 0;
+  background: #fff;
+  box-shadow: 0 -12px 30px rgba(31, 31, 45, 0.12);
+}
+
+.deposit-dialog h2 {
+  margin: 0 0 18px;
+  color: #101018;
+  font-size: 19px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.deposit-dialog label {
+  display: grid;
+  gap: 8px;
+  color: #666878;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.deposit-dialog input {
+  width: 100%;
+  height: 48px;
+  border: 0;
+  border-radius: 10px;
+  background: #f6f5f9;
+  color: #101018;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0 14px;
+}
+
+.deposit-dialog p {
+  margin: 8px 0 0;
+  color: #8b8c9a;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.deposit-dialog-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.deposit-dialog-actions button {
+  height: 46px;
+  border-radius: 23px;
+  background: #e7e8ed;
+  color: #171821;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.deposit-dialog-actions button:last-child {
+  background: #7132f5;
+  color: #fff;
+}
+
+.deposit-dialog-actions button:disabled {
+  opacity: 0.45;
+}
+
+@media (max-width: 374px) {
+  .kraken-detail-page,
+  .kraken-detail-footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .kraken-detail-row {
+    grid-template-columns: 108px minmax(0, 1fr);
+    column-gap: 6px;
+  }
+
+  .kraken-detail-label,
+  .kraken-detail-value,
+  .kraken-detail-value > strong {
+    font-size: 16px;
+  }
+
+  .kraken-detail-id,
+  .kraken-detail-value > span:not(.kraken-network) {
+    font-size: 15px;
+  }
+}
+
+.grey-text {
+  color: #696b82;
+}
+.content-text {
+  font-weight: 600;
+}

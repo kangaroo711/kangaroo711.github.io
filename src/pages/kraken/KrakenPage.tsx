@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import usdtIcon from '../../assets/kraken/usdt.png';
 import usdtIcon3x from '../../assets/kraken/usdt@3x.png';
 import { ActivityItem, baseActivities, defaultCrypto } from './activityData';
@@ -121,9 +122,28 @@ function TetherIcon() {
   );
 }
 
-function ActivityRow({ item, onAmountClick }: { item: ActivityItem; onAmountClick: () => void }) {
+function ActivityRow({
+  item,
+  onAmountClick,
+  onRowClick,
+}: {
+  item: ActivityItem;
+  onAmountClick: () => void;
+  onRowClick: () => void;
+}) {
   return (
-    <div className="activity-row">
+    <div
+      className="activity-row"
+      role="button"
+      tabIndex={0}
+      onClick={onRowClick}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onRowClick();
+        }
+      }}
+    >
       <TetherIcon />
       <div className="activity-copy">
         <div className="activity-title">
@@ -131,7 +151,14 @@ function ActivityRow({ item, onAmountClick }: { item: ActivityItem; onAmountClic
         </div>
         <div className="activity-time">{item.time}</div>
       </div>
-      <button className="activity-amount" type="button" onClick={onAmountClick}>
+      <button
+        className="activity-amount"
+        type="button"
+        onClick={(event) => {
+          event.stopPropagation();
+          onAmountClick();
+        }}
+      >
         <strong>{item.fiat}</strong>
         <span>{item.crypto}</span>
       </button>
@@ -140,6 +167,7 @@ function ActivityRow({ item, onAmountClick }: { item: ActivityItem; onAmountClic
 }
 
 export function KrakenPage() {
+  const navigate = useNavigate();
   const [isDatePanelOpen, setIsDatePanelOpen] = useState(false);
   const [isCryptoPanelOpen, setIsCryptoPanelOpen] = useState(false);
   const [activities, setActivities] = useState<ActivityItem[]>(baseActivities);
@@ -181,6 +209,10 @@ export function KrakenPage() {
   const openCryptoPanel = () => {
     setCryptoInputValue(formatCryptoInput(cryptoValue));
     setIsCryptoPanelOpen(true);
+  };
+
+  const openActivityDetail = (item: ActivityItem) => {
+    navigate(`/kraken/activity/${item.id}`, { state: { activity: item } });
   };
 
   const applyCryptoValue = () => {
@@ -263,7 +295,11 @@ export function KrakenPage() {
           return (
             <div className="activity-group" key={`${item.id}-${item.date}-${item.time}-${item.crypto}`}>
               {shouldShowDate && <h2>{item.date}</h2>}
-              <ActivityRow item={item} onAmountClick={openCryptoPanel} />
+              <ActivityRow
+                item={item}
+                onAmountClick={openCryptoPanel}
+                onRowClick={() => openActivityDetail(item)}
+              />
             </div>
           );
         })}
