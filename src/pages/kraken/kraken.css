@@ -319,6 +319,73 @@
   font-weight: 600;
 }
 
+.crypto-dialog-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(16, 16, 24, 0.22);
+}
+
+.crypto-dialog {
+  width: min(430px, 100%);
+  padding: 20px 20px calc(22px + env(safe-area-inset-bottom));
+  border-radius: 18px 18px 0 0;
+  background: #fff;
+  box-shadow: 0 -12px 30px rgba(31, 31, 45, 0.12);
+}
+
+.crypto-dialog h2 {
+  margin: 0 0 18px;
+  color: #101018;
+  font-size: 19px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.crypto-dialog label {
+  display: grid;
+  gap: 8px;
+  color: #666878;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.crypto-dialog input {
+  width: 100%;
+  height: 48px;
+  border: 0;
+  border-radius: 10px;
+  background: #f6f5f9;
+  color: #101018;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 0 14px;
+}
+
+.crypto-dialog-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.crypto-dialog-actions button {
+  height: 46px;
+  border-radius: 23px;
+  background: #e7e8ed;
+  color: #171821;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.crypto-dialog-actions button:last-child {
+  background: #7132f5;
+  color: #fff;
+}
+
 .activity-group h2 {
   margin: 14px 0 18px;
   color: #666878;

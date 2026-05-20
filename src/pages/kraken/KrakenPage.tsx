@@ -1,36 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import usdtIcon from '../../assets/kraken/usdt.png';
 import usdtIcon3x from '../../assets/kraken/usdt@3x.png';
+import { ActivityItem, baseActivities, defaultCrypto } from './activityData';
 import './kraken.css';
-
-interface ActivityItem {
-  id: number;
-  date: string;
-  title: string;
-  time: string;
-  fiat: string;
-  crypto: string;
-}
-
-const activities: ActivityItem[] = [
-  { id: 1, date: '2026年5月15日周五', title: '存储了 USDT', 5: '23:04', fiat: '$4,812.88', crypto: '+4,815.00 USDT' },
-  { id: 2, date: '2026年5月15日周五', title: '存储了 USDT', time: '22:03', fiat: '$4,811.97', crypto: '+4,815.00 USDT' },
-  { id: 3, date: '2026年4月14日周二', title: '存储了 USDT', time: '19:08', fiat: '$4,823.25', crypto: '+4,815.00 USDT' },
-  { id: 4, date: '2026年3月13日周五', title: '存储了 USDT', time: '20:34', fiat: '$4,801.64', crypto: '+4,815.00 USDT' },
-  { id: 5, date: '2026年2月13日周五', title: '存储了 USDT', time: '20:29', fiat: '$4,820.92', crypto: '+4,815.00 USDT' },
-  { id: 6, date: '2026年1月15日周四', title: '存储了 USDT', time: '19:47', fiat: '$4,842.31', crypto: '+4,815.00 USDT' },
-  { id: 7, date: '2025年12月19日周五', title: '存储了 USDT', time: '02:39', fiat: '$4,802.33', crypto: '+4,815.00 USDT' },
-  { id: 8, date: '2025年11月17日周一', title: '存储了 USDT', time: '17:55', fiat: '$4,824.14', crypto: '+4,815.00 USDT' },
-  { id: 9, date: '2025年10月16日周四', title: '存储了 USDT', time: '15:18', fiat: '$4,811.97', crypto: '+4,815.00 USDT' },
-  { id: 10, date: '2025年9月16日周二', title: '存储了 USDT', time: '17:08', fiat: '$4,813.94', crypto: '+4,815.00 USDT' },
-  { id: 11, date: '2025年7月18日周五', title: '存储了 USDT', time: '18:38', fiat: '$4,816.11', crypto: '+4,815.00 USDT' },
-  { id: 12, date: '2025年5月21日周三', title: '存储了 USDT', time: '22:12', fiat: '$4,815.48', crypto: '+4,815.00 USDT' },
-  { id: 13, date: '2025年4月17日周四', title: '存储了 USDT', time: '19:22', fiat: '$4,812.99', crypto: '+4,815.00 USDT' },
-  { id: 14, date: '2025年3月18日周二', title: '存储了 USDT', time: '16:16', fiat: '$4,814.71', crypto: '+4,815.00 USDT' },
-  { id: 15, date: '2025年2月20日周四', title: '存储了 USDT', time: '19:39', fiat: '$4,814.81', crypto: '+4,815.00 USDT' },
-  { id: 16, date: '2025年2月20日周四', title: '存储了 USDT', time: '18:41', fiat: '$20.00', crypto: '+10.00 USDT' },
-  { id: 16, date: '2025年2月20日周四', title: '存储了 USDT', time: '18:41', fiat: '$40.00', crypto: '+20.00 USDT' },
-];
 
 function parseActivityDate(date: string) {
   const match = date.match(/^(\d{4})年(\d{1,2})月(\d{1,2})日/);
@@ -41,6 +13,77 @@ function parseActivityDate(date: string) {
 
   const [, year, month, day] = match;
   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+}
+
+function parseChineseDate(date: string) {
+  const match = date.match(/^(\d{4})年(\d{1,2})月(\d{1,2})日/);
+
+  if (!match) {
+    return new Date();
+  }
+
+  const [, year, month, day] = match;
+  return new Date(Number(year), Number(month) - 1, Number(day));
+}
+
+function parseMoney(value: string) {
+  return Number(value.replace(/[$,+\sA-Z]/g, ''));
+}
+
+function formatMoney(value: number) {
+  return `$${value.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+}
+
+function formatCrypto(value: number) {
+  return `+${value.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })} USDT`;
+}
+
+function formatCryptoInput(value: number) {
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
+function formatChineseDate(date: Date) {
+  const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
+  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日周${weekdays[date.getDay()]}`;
+}
+
+function randomTimeAround(baseDate: string, baseTime: string) {
+  const date = parseChineseDate(baseDate);
+  const [hours, minutes] = baseTime.split(':').map(Number);
+  const offsetMinutes = Math.floor(Math.random() * 361) - 180;
+  const nextDate = new Date(date);
+  nextDate.setHours(hours, minutes + offsetMinutes, 0, 0);
+
+  return {
+    date: formatChineseDate(nextDate),
+    time: `${String(nextDate.getHours()).padStart(2, '0')}:${String(nextDate.getMinutes()).padStart(2, '0')}`,
+  };
+}
+
+function createActivitiesByCrypto(cryptoValue: number) {
+  return baseActivities.map((activity) => {
+    const baseFiat = parseMoney(activity.fiat);
+    const baseCrypto = parseMoney(activity.crypto);
+    const rate = baseFiat / baseCrypto;
+    const nextTime = randomTimeAround(activity.date, activity.time);
+
+    return {
+      ...activity,
+      date: nextTime.date,
+      time: nextTime.time,
+      fiat: formatMoney(cryptoValue * rate),
+      crypto: formatCrypto(cryptoValue),
+    };
+  });
 }
 
 function KrakenStatusBar() {
@@ -78,7 +121,7 @@ function TetherIcon() {
   );
 }
 
-function ActivityRow({ item }: { item: ActivityItem }) {
+function ActivityRow({ item, onAmountClick }: { item: ActivityItem; onAmountClick: () => void }) {
   return (
     <div className="activity-row">
       <TetherIcon />
@@ -88,16 +131,20 @@ function ActivityRow({ item }: { item: ActivityItem }) {
         </div>
         <div className="activity-time">{item.time}</div>
       </div>
-      <div className="activity-amount">
+      <button className="activity-amount" type="button" onClick={onAmountClick}>
         <strong>{item.fiat}</strong>
         <span>{item.crypto}</span>
-      </div>
+      </button>
     </div>
   );
 }
 
 export function KrakenPage() {
   const [isDatePanelOpen, setIsDatePanelOpen] = useState(false);
+  const [isCryptoPanelOpen, setIsCryptoPanelOpen] = useState(false);
+  const [activities, setActivities] = useState<ActivityItem[]>(baseActivities);
+  const [cryptoValue, setCryptoValue] = useState(parseMoney(defaultCrypto));
+  const [cryptoInputValue, setCryptoInputValue] = useState(formatCryptoInput(parseMoney(defaultCrypto)));
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   let currentDate = '';
@@ -120,7 +167,7 @@ export function KrakenPage() {
 
       return true;
     });
-  }, [startDate, endDate]);
+  }, [activities, startDate, endDate]);
 
   const hasDateFilter = Boolean(startDate || endDate);
   const dateFilterLabel = hasDateFilter ? '日期 (1)' : '日期';
@@ -129,6 +176,23 @@ export function KrakenPage() {
     setStartDate('');
     setEndDate('');
     setIsDatePanelOpen(false);
+  };
+
+  const openCryptoPanel = () => {
+    setCryptoInputValue(formatCryptoInput(cryptoValue));
+    setIsCryptoPanelOpen(true);
+  };
+
+  const applyCryptoValue = () => {
+    const nextCryptoValue = parseMoney(cryptoInputValue);
+
+    if (!Number.isFinite(nextCryptoValue) || nextCryptoValue <= 0) {
+      return;
+    }
+
+    setCryptoValue(nextCryptoValue);
+    setActivities(createActivitiesByCrypto(nextCryptoValue));
+    setIsCryptoPanelOpen(false);
   };
 
   useEffect(() => {
@@ -191,15 +255,15 @@ export function KrakenPage() {
         </section>
       )}
 
-      <section className="activity-list" aria-label="USDT 活动列表">
+      <section className="activity-list" aria-label="USDT 活动列表" >
         {filteredActivities.map((item) => {
           const shouldShowDate = item.date !== currentDate;
           currentDate = item.date;
 
           return (
-            <div className="activity-group" key={item.id}>
+            <div className="activity-group" key={`${item.id}-${item.date}-${item.time}-${item.crypto}`}>
               {shouldShowDate && <h2>{item.date}</h2>}
-              <ActivityRow item={item} />
+              <ActivityRow item={item} onAmountClick={openCryptoPanel} />
             </div>
           );
         })}
@@ -207,6 +271,27 @@ export function KrakenPage() {
           <div className="activity-empty">当前日期范围内暂无活动</div>
         )}
       </section>
+
+      {isCryptoPanelOpen && (
+        <div className="crypto-dialog-mask" role="presentation" onClick={() => setIsCryptoPanelOpen(false)}>
+          <section className="crypto-dialog" aria-label="修改 USDT 数量" onClick={(event) => event.stopPropagation()}>
+            <h2>修改 USDT 数量</h2>
+            <label>
+              <span>Crypto</span>
+              <input
+                inputMode="decimal"
+                value={cryptoInputValue}
+                onChange={(event) => setCryptoInputValue(event.target.value)}
+                placeholder="4,815.00"
+              />
+            </label>
+            <div className="crypto-dialog-actions">
+              <button type="button" onClick={() => setIsCryptoPanelOpen(false)}>取消</button>
+              <button type="button" onClick={applyCryptoValue}>确认</button>
+            </div>
+          </section>
+        </div>
+      )}
 
       <footer className="kraken-actions" aria-label="交易操作">
         <button className="recurring" type="button">定期买入</button>
