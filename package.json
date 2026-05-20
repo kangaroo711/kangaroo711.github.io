@@ -6,7 +6,7 @@
   "homepage": "https://kangaroo711.github.io/kangaroo711.github.io",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "node scripts/deploy-gh-pages.cjs",
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0"
