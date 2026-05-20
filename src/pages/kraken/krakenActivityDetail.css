@@ -110,11 +110,13 @@
 
 .kraken-detail-id {
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
   gap: 10px;
   font-size: 17px;
-  line-height: 1;
+  line-height: 1.25;
+  white-space: normal;
+  word-break: break-all;
 }
 
 .kraken-inline-icon-button,
@@ -130,11 +132,10 @@
 .kraken-deposit-address-button {
   min-width: 0;
   max-width: 100%;
-  overflow: hidden;
   font-weight: inherit;
   text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-all;
 }
 
 .kraken-success {
