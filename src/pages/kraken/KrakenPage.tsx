@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import usdtIcon from '../../assets/kraken/usdt.png';
-import usdtIcon3x from '../../assets/kraken/usdt@3x.png';
+import usdtIcon from '../../assets/kraken/usdt@3x.png';
 import { ActivityItem, baseActivities, defaultCrypto } from './activityData';
 import './kraken.css';
 
@@ -113,7 +112,6 @@ function TetherIcon() {
     <img
       className="tether-icon"
       src={usdtIcon}
-      srcSet={`${usdtIcon} 1x, ${usdtIcon3x} 3x`}
       alt=""
       aria-hidden="true"
       decoding="async"

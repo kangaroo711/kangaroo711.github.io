@@ -198,6 +198,7 @@
 .profile-value {
   color: #8d8d8d;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .profile-value {
@@ -507,18 +508,24 @@
   min-height: 58px;
   padding: 0 16px 0 18px;
   background: #e4f2ff;
+  cursor: pointer;
+}
+
+.result-bar:focus-visible {
+  outline: 2px solid #1260df;
+  outline-offset: -2px;
 }
 
 .result-bar h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   letter-spacing: 0;
 }
 
 .result-count {
   padding-right: 18px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
 }
 
@@ -533,6 +540,10 @@
 .sort-icon {
   width: 22px;
   height: 23px;
+}
+
+.sort-btn.is-asc .sort-icon {
+  transform: rotate(180deg);
 }
 
 .records-list {

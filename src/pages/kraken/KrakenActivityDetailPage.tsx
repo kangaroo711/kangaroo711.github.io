@@ -1,16 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import copyIcon from '../../assets/kraken/copy.png';
-import copyIcon3x from '../../assets/kraken/copy@3x.png';
-import expansionIcon from '../../assets/kraken/expansion.png';
-import expansionIcon3x from '../../assets/kraken/expansion@3x.png';
-import shareIcon from '../../assets/kraken/share.png';
-import shareIcon3x from '../../assets/kraken/share@3x.png';
-import tronIcon from '../../assets/kraken/tron.png';
-import tronIcon3x from '../../assets/kraken/tron@3x.png';
-import usdtIcon from '../../assets/kraken/usdt.png';
-import usdtIcon3x from '../../assets/kraken/usdt@3x.png';
+import copyIcon from '../../assets/kraken/copy@3x.png';
+import expansionIcon from '../../assets/kraken/expansion@3x.png';
+import shareIcon from '../../assets/kraken/share@3x.png';
+import tronIcon from '../../assets/kraken/tron@3x.png';
+import usdtIcon from '../../assets/kraken/usdt@3x.png';
 import { ActivityItem, activityDetails, baseActivities } from './activityData';
 import './krakenActivityDetail.css';
 
@@ -42,15 +37,15 @@ function formatDetailDate(date: string, time: string) {
 }
 
 function CopyIcon() {
-  return <img className="kraken-copy-icon" src={copyIcon} srcSet={`${copyIcon} 1x, ${copyIcon3x} 3x`} alt="" aria-hidden="true" />;
+  return <img className="kraken-copy-icon" src={copyIcon} alt="" aria-hidden="true" />;
 }
 
 function ExternalIcon() {
-  return <img className="kraken-external-icon" src={expansionIcon} srcSet={`${expansionIcon} 1x, ${expansionIcon3x} 3x`} alt="" aria-hidden="true" />;
+  return <img className="kraken-external-icon" src={expansionIcon} alt="" aria-hidden="true" />;
 }
 
 function ShareIcon() {
-  return <img className="kraken-share-icon" src={shareIcon} srcSet={`${shareIcon} 1x, ${shareIcon3x} 3x`} alt="" aria-hidden="true" />;
+  return <img className="kraken-share-icon" src={shareIcon} alt="" aria-hidden="true" />;
 }
 
 function DetailRow({
@@ -143,7 +138,6 @@ export function KrakenActivityDetailPage() {
         <img
           className="kraken-detail-token"
           src={usdtIcon}
-          srcSet={`${usdtIcon} 1x, ${usdtIcon3x} 3x`}
           alt=""
           aria-hidden="true"
           decoding="async"
@@ -163,7 +157,7 @@ export function KrakenActivityDetailPage() {
         </DetailRow>
         <DetailRow label="网络">
           <span className="kraken-network">
-            <img className="kraken-tron-icon" src={tronIcon} srcSet={`${tronIcon} 1x, ${tronIcon3x} 3x`} alt="" aria-hidden="true" />
+            <img className="kraken-tron-icon" src={tronIcon} alt="" aria-hidden="true" />
             Tron
           </span>
         </DetailRow>
