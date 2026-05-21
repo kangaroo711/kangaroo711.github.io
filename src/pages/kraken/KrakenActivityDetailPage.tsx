@@ -6,7 +6,7 @@ import expansionIcon from '../../assets/kraken/expansion@3x.png';
 import shareIcon from '../../assets/kraken/share@3x.png';
 import tronIcon from '../../assets/kraken/tron@3x.png';
 import usdtIcon from '../../assets/kraken/usdt@3x.png';
-import { ActivityItem, activityDetails, baseActivities } from './activityData';
+import { ActivityDetail, ActivityItem, activityDetails, baseActivities } from './activityData';
 import './krakenActivityDetail.css';
 
 function stripCryptoSign(value: string) {
@@ -23,6 +23,33 @@ function maskDepositAddress(value: string) {
 
 function sanitizeDepositAddress(value: string) {
   return value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 34);
+}
+
+function randomAlphaNumeric(length: number) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+}
+
+function randomHex(length: number) {
+  const chars = '0123456789abcdef';
+
+  return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+}
+
+function randomTransactionNo() {
+  const segment = (length: number) => randomAlphaNumeric(length).toUpperCase();
+
+  return `TX${segment(5)}-${segment(5)}-${segment(6)}`;
+}
+
+function createMockActivityDetail(depositAddress: string): ActivityDetail {
+  return {
+    chainTransactionId: `${randomHex(10)}...${randomHex(9)}`,
+    depositAddress,
+    referenceId: `${randomAlphaNumeric(7)}-${randomAlphaNumeric(4)}...${randomAlphaNumeric(11)}`,
+    transactionNo: randomTransactionNo(),
+  };
 }
 
 function formatDetailDate(date: string, time: string) {
@@ -81,10 +108,11 @@ export function KrakenActivityDetailPage() {
 
   const detail = activityDetails[activity.id] ?? activityDetails[1];
   const cryptoAmount = stripCryptoSign(activity.crypto);
-  const [depositAddress, setDepositAddress] = useState(detail.depositAddress);
+  const [detailState, setDetailState] = useState<ActivityDetail>(detail);
   const [depositInputValue, setDepositInputValue] = useState(detail.depositAddress);
   const [isDepositAddressVisible, setIsDepositAddressVisible] = useState(false);
   const [isDepositDialogOpen, setIsDepositDialogOpen] = useState(false);
+  const depositAddress = detailState.depositAddress;
   const renderedDepositAddress = isDepositAddressVisible ? depositAddress : maskDepositAddress(depositAddress);
   const isDepositInputValid = depositInputValue.length === 34;
 
@@ -98,20 +126,20 @@ export function KrakenActivityDetailPage() {
       return;
     }
 
-    setDepositAddress(depositInputValue);
+    setDetailState(createMockActivityDetail(depositInputValue));
     setIsDepositAddressVisible(false);
     setIsDepositDialogOpen(false);
   };
 
   useEffect(() => {
-    setDepositAddress(detail.depositAddress);
+    setDetailState(detail);
     setDepositInputValue(detail.depositAddress);
     setIsDepositAddressVisible(false);
     setIsDepositDialogOpen(false);
-  }, [detail.depositAddress]);
+  }, [detail]);
 
   useEffect(() => {
-    const themeColor = '#f6f5f9';
+    const themeColor = '#fff';
     let metaThemeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
 
     if (!metaThemeColor) {
@@ -129,7 +157,7 @@ export function KrakenActivityDetailPage() {
   }, []);
 
   return (
-    <main className="kraken-page kraken-detail-page" aria-label="USDT 活动详情">
+    <main className="kraken-detail-page" aria-label="USDT 活动详情">
       <header className="kraken-detail-header">
         <button className="kraken-back" aria-label="返回" type="button" onClick={() => navigate(-1)} />
       </header>
@@ -163,7 +191,7 @@ export function KrakenActivityDetailPage() {
         </DetailRow>
         <DetailRow label="链上交易 ID" valueClassName="kraken-detail-id grey-text content-text">
           <CopyIcon />
-          {detail.chainTransactionId}
+          {detailState.chainTransactionId}
         </DetailRow>
         <DetailRow label="存款地址" valueClassName="kraken-detail-id grey-text content-text">
           <button
@@ -183,11 +211,11 @@ export function KrakenActivityDetailPage() {
         </DetailRow>
         <DetailRow label="参考 ID" valueClassName="kraken-detail-id content-text">
           <CopyIcon />
-          {detail.referenceId}
+          {detailState.referenceId}
         </DetailRow>
         <DetailRow label="交易编号" valueClassName="kraken-detail-id content-text">
           <CopyIcon />
-          {detail.transactionNo}
+          {detailState.transactionNo}
         </DetailRow>
       </section>
 

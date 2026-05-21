@@ -56,6 +56,32 @@ function formatChineseDate(date: Date) {
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日周${weekdays[date.getDay()]}`;
 }
 
+function formatFilterDate(date: string) {
+  const [year, month, day] = date.split('-').map(Number);
+
+  if (!year || !month || !day) {
+    return '';
+  }
+
+  return `${year}年${month}月${day}日`;
+}
+
+function formatDateFilterLabel(startDate: string, endDate: string) {
+  if (startDate && endDate) {
+    return `${formatFilterDate(startDate)}至${formatFilterDate(endDate)}`;
+  }
+
+  if (startDate) {
+    return `${formatFilterDate(startDate)}起`;
+  }
+
+  if (endDate) {
+    return `截至${formatFilterDate(endDate)}`;
+  }
+
+  return '日期';
+}
+
 function randomTimeAround(baseDate: string, baseTime: string) {
   const date = parseChineseDate(baseDate);
   const [hours, minutes] = baseTime.split(':').map(Number);
@@ -196,7 +222,7 @@ export function KrakenPage() {
   }, [activities, startDate, endDate]);
 
   const hasDateFilter = Boolean(startDate || endDate);
-  const dateFilterLabel = hasDateFilter ? '日期 (1)' : '日期';
+  const dateFilterLabel = formatDateFilterLabel(startDate, endDate);
 
   const clearFilters = () => {
     setStartDate('');
@@ -253,13 +279,13 @@ export function KrakenPage() {
 
       <section className="kraken-tabs" aria-label="活动分类">
         <button className="active" type="button">主要</button>
-        <button type="button">买寸</button>
+        <button type="button">头寸</button>
       </section>
 
       <section className="kraken-filters" aria-label="筛选条件">
         <button type="button">类型 (1)<span /></button>
         <button
-          className={hasDateFilter ? 'active' : ''}
+          className={hasDateFilter ? 'date-filter active' : 'date-filter'}
           type="button"
           onClick={() => setIsDatePanelOpen((value) => !value)}
         >

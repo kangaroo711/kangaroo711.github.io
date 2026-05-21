@@ -675,7 +675,7 @@
   font-weight: 400;
 }
 
-@media (max-width: 374px) {
+/* @media (max-width: 374px) {
   .status-bar {
     padding-left: 28px;
     padding-right: 24px;
@@ -718,4 +718,4 @@
   .record-detail p {
     grid-template-columns: 104px minmax(0, 1fr);
   }
-}
+} */
