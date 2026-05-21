@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import noDataIcon from '../../assets/kraken/nodata@3x.png';
 import usdtIcon from '../../assets/kraken/usdt@3x.png';
 import { ActivityItem, baseActivities, defaultCrypto } from './activityData';
 import './kraken.css';
@@ -328,7 +329,21 @@ export function KrakenPage() {
           );
         })}
         {filteredActivities.length === 0 && (
-          <div className="activity-empty">当前日期范围内暂无活动</div>
+          <div className="activity-empty">
+            <img
+              className="activity-empty-image"
+              src={noDataIcon}
+              alt=""
+              aria-hidden="true"
+              decoding="async"
+              draggable={false}
+            />
+            <h2>无交易</h2>
+            <p>我们未能根据所应用的筛选找到任何交易。</p>
+            <button type="button" onClick={clearFilters}>
+              清除筛选
+            </button>
+          </div>
         )}
       </section>
 
