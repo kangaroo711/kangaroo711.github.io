@@ -8,6 +8,7 @@ import tronIcon from '../../assets/kraken/tron@3x.png';
 import usdtIcon from '../../assets/kraken/usdt@3x.png';
 import { ActivityDetail, ActivityItem, activityDetails, baseActivities } from './activityData';
 import './krakenActivityDetail.css';
+import { KrakenHeader } from './KrakenHeader';
 
 function stripCryptoSign(value: string) {
   return value.replace(/^\+/, '');
@@ -19,6 +20,10 @@ function maskDepositAddress(value: string) {
   }
 
   return `${value.slice(0, 11)}...${value.slice(-9)}`;
+}
+
+function splitDepositAddress(value: string) {
+  return value.match(/.{1,4}/g) ?? [];
 }
 
 function sanitizeDepositAddress(value: string) {
@@ -110,10 +115,12 @@ export function KrakenActivityDetailPage() {
   const cryptoAmount = stripCryptoSign(activity.crypto);
   const [detailState, setDetailState] = useState<ActivityDetail>(detail);
   const [depositInputValue, setDepositInputValue] = useState(detail.depositAddress);
-  const [isDepositAddressVisible, setIsDepositAddressVisible] = useState(false);
   const [isDepositDialogOpen, setIsDepositDialogOpen] = useState(false);
+  const [isDepositAddressSheetOpen, setIsDepositAddressSheetOpen] = useState(false);
+  const [hasCopiedDepositAddress, setHasCopiedDepositAddress] = useState(false);
   const depositAddress = detailState.depositAddress;
-  const renderedDepositAddress = isDepositAddressVisible ? depositAddress : maskDepositAddress(depositAddress);
+  const renderedDepositAddress = maskDepositAddress(depositAddress);
+  const depositAddressChunks = splitDepositAddress(depositAddress);
   const isDepositInputValid = depositInputValue.length === 34;
 
   const openDepositDialog = () => {
@@ -127,15 +134,40 @@ export function KrakenActivityDetailPage() {
     }
 
     setDetailState(createMockActivityDetail(depositInputValue));
-    setIsDepositAddressVisible(false);
     setIsDepositDialogOpen(false);
+    setIsDepositAddressSheetOpen(false);
+    setHasCopiedDepositAddress(false);
+  };
+
+  const openDepositAddressSheet = () => {
+    setHasCopiedDepositAddress(false);
+    setIsDepositAddressSheetOpen(true);
+  };
+
+  const copyDepositAddress = async () => {
+    try {
+      await navigator.clipboard.writeText(depositAddress);
+    } catch {
+      const textArea = document.createElement('textarea');
+      textArea.value = depositAddress;
+      textArea.setAttribute('readonly', '');
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+    }
+
+    setHasCopiedDepositAddress(true);
   };
 
   useEffect(() => {
     setDetailState(detail);
     setDepositInputValue(detail.depositAddress);
-    setIsDepositAddressVisible(false);
     setIsDepositDialogOpen(false);
+    setIsDepositAddressSheetOpen(false);
+    setHasCopiedDepositAddress(false);
   }, [detail]);
 
   useEffect(() => {
@@ -158,9 +190,7 @@ export function KrakenActivityDetailPage() {
 
   return (
     <main className="kraken-detail-page" aria-label="USDT 活动详情">
-      <header className="kraken-detail-header">
-        <button className="kraken-back" aria-label="返回" type="button" onClick={() => navigate(-1)} />
-      </header>
+      <KrakenHeader className="kraken-detail-header" onBack={() => navigate(-1)} />
 
       <section className="kraken-detail-hero">
         <img
@@ -196,9 +226,9 @@ export function KrakenActivityDetailPage() {
         <DetailRow label="存款地址" valueClassName="kraken-detail-id grey-text content-text">
           <button
             className="kraken-inline-icon-button"
-            aria-label={isDepositAddressVisible ? '隐藏完整存款地址' : '显示完整存款地址'}
+            aria-label="查看完整存款地址"
             type="button"
-            onClick={() => setIsDepositAddressVisible((value) => !value)}
+            onClick={openDepositAddressSheet}
           >
             <ExternalIcon />
           </button>
@@ -246,6 +276,39 @@ export function KrakenActivityDetailPage() {
               <button type="button" onClick={() => setIsDepositDialogOpen(false)}>取消</button>
               <button type="button" disabled={!isDepositInputValid} onClick={applyDepositAddress}>确认</button>
             </div>
+          </section>
+        </div>
+      )}
+
+      {isDepositAddressSheetOpen && (
+        <div
+          className="deposit-address-sheet-mask"
+          role="presentation"
+          onClick={() => setIsDepositAddressSheetOpen(false)}
+        >
+          <section
+            className="deposit-address-sheet"
+            aria-label="完整存款地址"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <span className="deposit-address-sheet-handle" aria-hidden="true" />
+            <div className="deposit-address-display" aria-label={depositAddress}>
+              {depositAddressChunks.map((chunk, index) => (
+                <span className="deposit-address-chunk" key={`${chunk}-${index}`}>
+                  {chunk.split('').map((character, characterIndex) => (
+                    <span
+                      className={/\d/.test(character) ? 'deposit-address-number' : undefined}
+                      key={`${character}-${characterIndex}`}
+                    >
+                      {character}
+                    </span>
+                  ))}
+                </span>
+              ))}
+            </div>
+            <button className="deposit-address-copy-button" type="button" onClick={copyDepositAddress}>
+              {hasCopiedDepositAddress ? '已复制' : '复制地址'}
+            </button>
           </section>
         </div>
       )}

@@ -4,6 +4,7 @@ import noDataIcon from '../../assets/kraken/nodata@3x.png';
 import usdtIcon from '../../assets/kraken/usdt@3x.png';
 import { ActivityItem, baseActivities, defaultCrypto } from './activityData';
 import './kraken.css';
+import { KrakenHeader } from './KrakenHeader';
 
 function parseActivityDate(date: string) {
   const match = date.match(/^(\d{4})年(\d{1,2})月(\d{1,2})日/);
@@ -273,10 +274,7 @@ export function KrakenPage() {
   return (
     <main className="kraken-page" aria-label="USDT 活动">
       {/* <KrakenStatusBar /> */}
-      <header className="kraken-header">
-        <button className="kraken-back" aria-label="返回" type="button" />
-        <h1>USDT 活动</h1>
-      </header>
+      <KrakenHeader title="USDT 活动" />
 
       <section className="kraken-tabs" aria-label="活动分类">
         <button className="active" type="button">主要</button>

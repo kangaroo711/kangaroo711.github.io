@@ -140,8 +140,7 @@
   transform: translateX(-50%);
 }
 
-.kraken-header::before,
-.kraken-header::after {
+.kraken-header::before{
   content: "";
   position: absolute;
   left: 0;
@@ -157,12 +156,6 @@
   -webkit-backdrop-filter: blur(.1px);
 }
 
-.kraken-header::after {
-  top: 100%;
-  height: 8px;
-  z-index: -1;
-  background: linear-gradient(to bottom, rgba(246, 245, 249, 0.88), rgba(246, 245, 249, 0));
-}
 
 .kraken-header h1 {
   position: relative;
@@ -505,7 +498,7 @@
   width: min(430px, 100%);
   padding: 0px 14px calc(18px + env(safe-area-inset-bottom));
   transform: translateX(-50%);
-  background: linear-gradient(to top, #fff 82%, rgba(255, 255, 255, 0));
+  background: linear-gradient(to top, #fff 70%, rgba(255, 255, 255, 0));
 }
 
 .kraken-actions button {

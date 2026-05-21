@@ -65,7 +65,7 @@ const initialRecords: TravelRecord[] = [
   },
   {
     id: 8,
-    type: "entry",
+    type: "exit",
     date: "2019-12-21",
     port: "罗湖口岸",
     documentType: "往来港澳通行证",
@@ -73,7 +73,7 @@ const initialRecords: TravelRecord[] = [
   },
   {
     id: 9,
-    type: "exit",
+    type: "entry",
     date: "2019-12-21",
     port: "罗湖口岸",
     documentType: "往来港澳通行证",
