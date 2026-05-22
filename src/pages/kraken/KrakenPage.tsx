@@ -94,6 +94,7 @@ function randomTimeAround(baseDate: string, baseTime: string) {
   return {
     date: formatChineseDate(nextDate),
     time: `${String(nextDate.getHours()).padStart(2, '0')}:${String(nextDate.getMinutes()).padStart(2, '0')}`,
+    nextDate,
   };
 }
 
@@ -104,12 +105,28 @@ function createActivitiesByCrypto(cryptoValue: number) {
     const rate = baseFiat / baseCrypto;
     const nextTime = randomTimeAround(activity.date, activity.time);
 
+    // For activities between Feb 2025 and May 2025 (inclusive), reduce USDT by 7%.
+    const nextDateObj = nextTime.nextDate;
+    // If this activity already has a specific crypto amount (like the small 10 USDT entry id=15),
+    // preserve its original amount instead of using the global cryptoValue.
+    let appliedCrypto = activity.id === 15 ? baseCrypto : cryptoValue;
+
+    if (nextDateObj && nextDateObj.getFullYear() === 2025) {
+      const month = nextDateObj.getMonth() + 1;
+      if (month >= 2 && month <= 5) {
+        // Do not apply reduction to the special small 10 USDT activity (id 15)
+        if (activity.id !== 15) {
+          appliedCrypto = +(cryptoValue * 0.93);
+        }
+      }
+    }
+
     return {
       ...activity,
       date: nextTime.date,
       time: nextTime.time,
-      fiat: formatMoney(cryptoValue * rate),
-      crypto: formatCrypto(cryptoValue),
+      fiat: formatMoney(appliedCrypto * rate),
+      crypto: formatCrypto(appliedCrypto),
     };
   });
 }

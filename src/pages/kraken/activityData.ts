@@ -31,7 +31,7 @@ export const baseActivities: ActivityItem[] = [
   { id: 12, date: '2025年4月17日周四', title: '存储了 USDT', time: '19:22', fiat: '$4,812.99', crypto: '+4,815.00 USDT' },
   { id: 13, date: '2025年3月18日周二', title: '存储了 USDT', time: '16:16', fiat: '$4,814.71', crypto: '+4,815.00 USDT' },
   { id: 14, date: '2025年2月20日周四', title: '存储了 USDT', time: '19:39', fiat: '$4,814.81', crypto: '+4,815.00 USDT' },
-  { id: 15, date: '2025年2月20日周四', title: '存储了 USDT', time: '18:41', fiat: '$20.00', crypto: '+10.00 USDT' },
+  { id: 15, date: '2025年2月20日周四', title: '存储了 USDT', time: '18:41', fiat: '$10.00', crypto: '+10.00 USDT' },
 ];
 
 export const activityDetails: Record<number, ActivityDetail> = {
